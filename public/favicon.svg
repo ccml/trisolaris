@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Trois soleils (couleurs de SUN_COLORS) et la planète, sur fond spatial -->
+  <defs>
+    <radialGradient id="a"><stop offset=".15" stop-color="#fff"/><stop offset=".5" stop-color="#bfd4ff"/><stop offset="1" stop-color="#bfd4ff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="b"><stop offset=".15" stop-color="#fff"/><stop offset=".5" stop-color="#fff1c9"/><stop offset="1" stop-color="#fff1c9" stop-opacity="0"/></radialGradient>
+    <radialGradient id="c"><stop offset=".15" stop-color="#fff"/><stop offset=".5" stop-color="#ffa25a"/><stop offset="1" stop-color="#ffa25a" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#02030a"/>
+  <path d="M10 40c8-20 36-26 44-12" fill="none" stroke="#5f7bb0" stroke-width="1.5" stroke-opacity=".6"/>
+  <circle cx="21" cy="21" r="15" fill="url(#a)"/>
+  <circle cx="44" cy="25" r="13" fill="url(#b)"/>
+  <circle cx="29" cy="44" r="12" fill="url(#c)"/>
+  <circle cx="51" cy="47" r="4" fill="#4d8fd6"/>
+  <path d="M48.5 45.5c1.5-.5 3 .5 3.5 2" stroke="#4f7d3a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

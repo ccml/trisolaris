@@ -122,6 +122,7 @@ export function createApp(container: HTMLElement): void {
   }
 
   const vrButton = createVRButton(renderer);
+  vrButton.classList.add('vr-button'); // repositionné en CSS sur écran tactile
   document.body.appendChild(vrButton);
   // Sans VR (téléphone, tablette), le bouton « VR NOT SUPPORTED » est masqué sur écran tactile (CSS).
   void navigator.xr

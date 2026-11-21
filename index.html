@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Trisolaris</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#02030a" />
     <style>
       html, body { overscroll-behavior: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
       html, body { margin: 0; height: 100%; overflow: hidden; background: #02030a; font-family: system-ui, sans-serif; color: #e8edf3; }
@@ -53,6 +55,13 @@
         #hud { top: calc(12px + env(safe-area-inset-top)); left: 12px; width: 220px; font-size: 12px; }
         #toast { top: auto; bottom: calc(var(--touchbar-h, 64px) + 84px); max-width: calc(100vw - 32px); box-sizing: border-box; text-align: center; }
         .vr-unsupported { display: none !important; }
+        /* Le bouton VR de Three.js est placé en bas au centre (styles inline) : il recouvrirait la barre. */
+        .vr-button {
+          top: calc(12px + env(safe-area-inset-top)) !important; right: 12px !important;
+          bottom: auto !important; left: auto !important;
+          width: auto !important; padding: 10px 14px !important; font-size: 12px !important;
+          background: rgba(10, 14, 24, 0.72) !important;
+        }
       }
       @media (hover: none) and (pointer: coarse) and (max-width: 600px) {
         #era b { font-size: 15px; }

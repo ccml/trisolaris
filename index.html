@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Trisolaris</title>
+    <style>
+      html, body { overscroll-behavior: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #02030a; font-family: system-ui, sans-serif; color: #e8edf3; }
+      #app canvas { display: block; }
+      .overlay { position: fixed; border-radius: 10px; background: rgba(10, 14, 24, 0.72); font-size: 13px; line-height: 1.5; pointer-events: none; transition: opacity 0.2s; }
+      .overlay.hidden { opacity: 0; }
+      #hud { left: 16px; top: 16px; width: 260px; padding: 12px 14px; }
+      #hud h1 { margin: 0 0 8px; font-size: 16px; letter-spacing: 0.04em; }
+      #hud .row { display: flex; justify-content: space-between; gap: 8px; }
+      #hud .row span { color: #9aa7b8; }
+      #hud .sub { margin: 10px 0 4px; color: #9aa7b8; }
+      #hud .bar { display: grid; grid-template-columns: 10px 52px 1fr 38px; align-items: center; gap: 6px; }
+      #hud .dot { width: 10px; height: 10px; border-radius: 50%; }
+      #hud .track { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.12); overflow: hidden; }
+      #hud .track span { display: block; height: 100%; }
+      #hud .pct { text-align: right; color: #9aa7b8; }
+      #era { left: 50%; top: 16px; transform: translateX(-50%); padding: 8px 18px; border: 2px solid transparent; text-align: center; }
+      #era b { display: block; font-size: 18px; }
+      #era span { color: #c4cdd8; }
+      #help { left: 16px; bottom: 16px; max-width: 560px; padding: 10px 14px; color: #c4cdd8; }
+      #help kbd { padding: 0 4px; border-radius: 3px; background: rgba(255,255,255,0.15); font-family: inherit; }
+      #toast { left: 50%; top: 84px; transform: translateX(-50%); padding: 8px 16px; color: #ffd27a; opacity: 0; }
+      #toast.visible { opacity: 1; }
+      #hud.collapsed { display: none; }
+      /* Barre tactile : visible seulement sur écran tactile sans souris (téléphone, tablette). */
+      #touchbar {
+        display: none; left: 0; right: 0; bottom: 0; border-radius: 0; pointer-events: auto;
+        padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+        flex-wrap: wrap; justify-content: center; gap: 4px;
+      }
+      #touchbar button {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        min-width: 52px; min-height: 48px; padding: 4px 6px; border: 0; border-radius: 8px;
+        background: rgba(255, 255, 255, 0.08); color: #e8edf3; font: inherit; touch-action: manipulation;
+      }
+      #touchbar button:active { background: rgba(255, 255, 255, 0.25); }
+      #touchbar button.active { background: rgba(95, 211, 141, 0.28); }
+      #touchbar button.readout { background: transparent; pointer-events: none; min-width: 44px; }
+      #touchbar .icon { font-size: 18px; line-height: 1.1; }
+      #touchbar .label { font-size: 10px; color: #9aa7b8; }
+      @media (max-width: 1000px) { #era { left: auto; right: 16px; transform: none; } }
+      @media (max-width: 700px) { #help { display: none; } #era { top: auto; bottom: 16px; left: 16px; } }
+      @media (hover: none) and (pointer: coarse) {
+        #touchbar { display: flex; }
+        #help { display: none; }
+        #era { top: auto; left: 50%; right: auto; transform: translateX(-50%); bottom: calc(var(--touchbar-h, 64px) + 10px); width: max-content; max-width: calc(100vw - 32px); box-sizing: border-box; }
+        #hud { top: calc(12px + env(safe-area-inset-top)); left: 12px; width: 220px; font-size: 12px; }
+        #toast { top: auto; bottom: calc(var(--touchbar-h, 64px) + 84px); max-width: calc(100vw - 32px); box-sizing: border-box; text-align: center; }
+        .vr-unsupported { display: none !important; }
+      }
+      @media (hover: none) and (pointer: coarse) and (max-width: 600px) {
+        #era b { font-size: 15px; }
+        #era span { font-size: 12px; }
+        #touchbar .label { display: none; }
+        #touchbar button { min-width: 44px; min-height: 44px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="hud" class="overlay"></div>
+    <div id="era" class="overlay"></div>
+    <div id="toast" class="overlay"></div>
+    <div id="touchbar" class="overlay"></div>
+    <div id="help" class="overlay">
+      <div><b>Souris</b> : glisser pour tourner, molette pour zoomer, clic droit pour déplacer</div>
+      <div><b>Clavier</b> : <kbd>1</kbd>–<kbd>4</kbd> configuration · <kbd>N</kbd> nouveau système chaotique · <kbd>R</kbd> recommencer · <kbd>Espace</kbd> pause · <kbd>+</kbd> <kbd>−</kbd> vitesse · <kbd>C</kbd> caméra suivante · <kbd>T</kbd> traînées</div>
+      <div><b>Quest 3</b> : « ENTER VR » · stick droit = tourner / zoomer · stick gauche = vitesse · A pause · B configuration · X nouveau · Y traînées · gâchette droite = recommencer</div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
